@@ -1,0 +1,121 @@
+{% include "head.html" %}
+
+<body>
+
+  {% block body %}
+  {% include "header.html" %}
+    <main>
+        <h3 class="center">Bienvenue sur la plateforme de gestion <br> des apprenants de la Sonatel Academy.</h3>
+        <h5 class="center"><b> Statistiques:</b></h5>
+                <div class="row">
+                    <div class="col s12 m4">
+                      <div class="center card-panel teal">
+                          <h2><i class="medium material-icons">person_add</i> &nbsp;{{ inscription|length }} </h2>
+                        <span class="white-text">Etudiants inscrit </span>
+                      </div>
+                    </div>
+                
+                    <div class="col s12 m4">
+                      <div class="center card-panel red">
+                          <h2><i class="medium material-icons">account_circle</i> &nbsp;{{ listeannule|length }}</h2>
+                        <span class="white-text">Etudiants annulés
+                        </span>
+                      </div>
+                    </div>
+                
+                    <div class="col s12 m4">
+                      <div class="center card-panel orange">
+                          <h2><i class="medium material-icons">account_circle</i> &nbsp;{{ listesuspendu|length }}</h2>
+                        <span class="white-text">Etudiants suspendus
+                        </span>
+                      </div>
+                    </div>
+                    <div class="col s12 m6">
+                            <div class="center card-panel  cyan">
+                                <h2><i class="medium material-icons">folder_special</i> &nbsp;{{ listeref|length }}</h2>
+                              <span class="white-text">Nombre de réferentiels
+                              </span>
+                            </div>
+                    </div>
+                    <div class="col s12 m6">
+                            <div class="center card-panel  blue darken-4">
+                                <h2><i class="medium material-icons">supervisor_account</i> &nbsp;{{ promotion|length }}</h2>
+                              <span class="white-text">Nombre de promotions
+                              </span>
+                            </div>
+                    </div>
+                </div>
+                    <div id="inscription" role="dialog">
+                        <div class="row">
+                          <form class=" col s12" action="" method="POST">
+                            <div class="row">
+                                <h3>Etudiant</h3>
+                              <div class="input-field col s6">
+                                <input placeholder="Astou" required="" aria-required="true" id="first_name" type="text" class="validate" name="first_name" onkeyup="nospaces(this)">
+                                <label for="first_name">Prénom</label>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="input-field col s6">
+                                <input placeholder="Ndiaye" id="last_name" required="" aria-required="true" type="text" class="validate" name="last_name" onkeyup="nospaces(this)">
+                                <label for="last_name">Nom</label>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="input-field col s6">
+                                <input placeholder="astoundiaye@sonatelacademy.sn" required="" aria-required="true" id="email" type="email" class="validate" onkeyup="nospaces(this)" 
+                                  name="email">
+                                <label for="email">Email</label>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="input-field col s6">
+                                  <input id="date_naissance" required="" aria-required="true" type="date" min="2004-12-31" max="2030-12-31" name="date_naissance">
+                                  <label for="date_naiss">Date naissance</label>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="input-field col s6">
+                                <input placeholder="Mariste, villa 0784" id="adresse" required="" aria-required="true" type="text" class="validate" name="adresse">
+                                <label for="adresse">Adresse</label>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="input-field col s6">
+                                <select name="promotion" id="promotion">
+                                  <option required="" aria-required="true" value="" disabled selected>Choisir un promo</option>
+                                  {% for data1 in promotion%}
+                                  <option value="{{data1[0]}}"> {{data1[1]}} </option>
+                                  {% endfor %}
+                                </select>
+                                <label>Promotion</label>
+                              </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <select name="statut" id="statut" required="" aria-required="true">
+                                        <option value="inscrit">Inscrit</option>
+                                    </select>
+                                  <label for="statut">Statut</label>
+                                </div>
+                            </div>
+                            <div class="center">
+                              <button required="" aria-required="true" class="center btn waves-effect waves-light teal darken-4" type="submit" name="action"
+                                data-toggle="modal" data-target="#mymodal">Inscrire
+                                <a href="inscription"><em class="material-icons right">send</em></a>
+                              </button>
+                            </div>
+                          </form>
+                        </div>
+            
+                      </div>
+            
+                
+    </main>
+{% include "footer.html" %}
+{% include "scriptJS.html" %}
+
+{% endblock %}
+</body>
+
+</html>
