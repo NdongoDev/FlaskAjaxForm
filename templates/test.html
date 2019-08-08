@@ -1,0 +1,131 @@
+{% include "head.html" %}
+
+<body>
+
+  {% block body %}
+  {% include "header.html" %}
+    <main>
+        <h3 class="center">Bienvenue sur la plateforme de gestion <br> des apprenants de la Sonatel Academy.</h3>
+            <div id="insertapp" role="dialog">
+                <div class="row">
+                    <div class="center col s12 m5 offset-m3">
+                         <!--form etutiant-->
+                         <div>
+                            <p>
+                                <label>
+                                    <input name="group" type="radio" checked />
+                                        <span>Nouveau</span>
+                                        </label>
+                                <label>
+                                    <input name="group" type="radio" />
+                                        <span>Ancien</span>
+                                </label>
+                            </p>
+                         </div>
+                        <div class="card col s12 teal accent-4">
+                            <div class="card-content white-text">
+                                <span class="card-title" >Etudiant</span>
+                            </div>
+                        </div>
+                            <form method="POST">
+                                    {{ form.csrf_token }}
+                                <div class="row"> 
+                                    <div class="input-field col s6">
+                                        {{form.matricule(class="form-control")}}
+                                        <label for="matricule">Matricule</label>
+                                    </div> 
+                                    <div class="input-field col s6">
+                                        <input placeholder="Astou" required="" aria-required="true" id="first_name" type="text" class="validate" name="first_name" onkeyup="nospaces(this)">
+                                        <label for="first_name">Prénom</label>
+                                    </div>
+                                
+                                    <div class="input-field col s6">
+                                        <input placeholder="Ndiaye" id="last_name" required="" aria-required="true" type="text" class="validate" name="last_name" onkeyup="nospaces(this)">
+                                        <label for="last_name">Nom</label>
+                                    </div>
+                                    
+                                    <div class="input-field col s6">
+                                        <input placeholder="astoundiaye@sonatelacademy.sn" required="" aria-required="true" id="email" type="email" class="validate" onkeyup="nospaces(this)" 
+                                        name="email">
+                                        <label for="email">Email</label>
+                                    </div>
+                                
+                                    <div class="input-field col s6">
+                                        <input id="date_naiss" required="" aria-required="true" type="date" min="2004-12-31" max="2019-12-31" name="date_naiss">
+                                        <label for="date_naiss">Date naissance</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input placeholder="Mariste, villa 0784" id="adresse" required="" aria-required="true" type="text" class="validate" name="adresse">
+                                        <label for="adresse">Adresse</label>
+                                    </div>
+                                </div>
+                                <div class="center">
+                                    <button required="" aria-required="true" class="center btn waves-effect waves-light teal darken-4" type="submit" name="action">
+                                        Inscrire
+                                        <a href="insertapp"><em class="material-icons right">send</em></a>
+                                    </button>
+                                </div>
+                            
+                        <!--form etutiant-->
+                        <br><br>
+                        <hr>
+                        <!-- form inscription-->
+                        <div class="card col s12 teal accent-4">
+                            <div class="card-content white-text">
+                                <span class="card-title" >Inscription</span>
+                            </div>
+                        </div>
+                        
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <select name="filiere" id="filiere">
+                                    <option required="" aria-required="true" value="" disabled selected>Choisir une filiere</option>
+                                    <option value=""> </option>
+                                    </select>
+                                    <label>Filiere</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <select name="classe" id="classe" required="" aria-required="true">
+                                        <option value="inscrit">Inscrit</option>
+                                    </select>
+                                    <label for="Classe">Classe</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input required="" aria-required="true" id="matricule" type="text" class="validate" name="matricule" onkeyup="nospaces(this)">
+                                    <label for="matricule">Matricule</label>
+                                </div> 
+                                <div class="input-field col s6">
+                                    <input placeholder="Astou" required="" aria-required="true" id="first_name" type="text" class="validate" name="first_name" onkeyup="nospaces(this)">
+                                    <label for="first_name">Prénom</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input required="" aria-required="true" id="matricule" type="text" class="validate" name="matricule" onkeyup="nospaces(this)">
+                                    <label for="matricule">Matricule</label>
+                                </div> 
+                                <div class="input-field col s6">
+                                    <input placeholder="Astou" required="" aria-required="true" id="first_name" type="text" class="validate" name="first_name" onkeyup="nospaces(this)">
+                                    <label for="first_name">Prénom</label>
+                                </div>
+                                <div class="row">
+                                        <div class="input-field col s12">
+                                            <input id="telephone" required="" aria-required="true" type="text" class="validate" name="telephone">
+                                            <label for="telephone">Télephone</label>
+                                        </div>
+                                    </div>
+                            
+                            </div>
+                        </form>
+                        <!--inscription-->
+                    </div>
+                </div>
+            </div>
+            
+                
+    </main>
+{% include "footer.html" %}
+{% include "scriptJS.html" %}
+
+{% endblock %}
+</body>
+
+</html>

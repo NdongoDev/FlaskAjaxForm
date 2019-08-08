@@ -1,130 +1,275 @@
-{% include "head.html" %}
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <!-- Title Page-->
+    <title>Inscription </title>
+
+    <!-- Icons font CSS-->
+    <link href="../static/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="../static/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link rel="stylesheet" href="../static/jquery-ui/jquery-ui.css">
+    <link href="../static/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="../static/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="../static/css/main.css" rel="stylesheet" media="all">
+   
+</head>
 
 <body>
-
-  {% block body %}
-  {% include "header.html" %}
-    <main>
-        <h3 class="center">Bienvenue sur la plateforme de gestion <br> des apprenants de la Sonatel Academy.</h3>
-            <div id="insertapp" role="dialog">
-                <div class="row">
-                    <div class="center col s12 m5 offset-m3">
-                         <!--form etutiant-->
-                         <div>
-                            <p>
-                                <label>
-                                    <input name="group" type="radio" checked />
-                                        <span>Nouveau</span>
-                                        </label>
-                                <label>
-                                    <input name="group" type="radio" />
-                                        <span>Ancien</span>
-                                </label>
-                            </p>
-                         </div>
-                        <div class="card col s12 teal accent-4">
-                            <div class="card-content white-text">
-                                <span class="card-title" >Etudiant</span>
-                            </div>
-                        </div>
-                            <form action="{{url_for('insertapp')}}" method="POST">
-                                <div class="row"> 
-                                    <div class="input-field col s6">
-                                        <input required="" aria-required="true" id="matricule" type="text" class="validate" name="matricule" onkeyup="nospaces(this)">
-                                        <label for="matricule">Matricule</label>
-                                    </div> 
-                                    <div class="input-field col s6">
-                                        <input placeholder="Astou" required="" aria-required="true" id="first_name" type="text" class="validate" name="first_name" onkeyup="nospaces(this)">
-                                        <label for="first_name">Prénom</label>
-                                    </div>
-                                
-                                    <div class="input-field col s6">
-                                        <input placeholder="Ndiaye" id="last_name" required="" aria-required="true" type="text" class="validate" name="last_name" onkeyup="nospaces(this)">
-                                        <label for="last_name">Nom</label>
-                                    </div>
-                                    
-                                    <div class="input-field col s6">
-                                        <input placeholder="astoundiaye@sonatelacademy.sn" required="" aria-required="true" id="email" type="email" class="validate" onkeyup="nospaces(this)" 
-                                        name="email">
-                                        <label for="email">Email</label>
-                                    </div>
-                                
-                                    <div class="input-field col s6">
-                                        <input id="date_naiss" required="" aria-required="true" type="date" min="2004-12-31" max="2019-12-31" name="date_naiss">
-                                        <label for="date_naiss">Date naissance</label>
-                                    </div>
-                                    <div class="input-field col s6">
-                                        <input placeholder="Mariste, villa 0784" id="adresse" required="" aria-required="true" type="text" class="validate" name="adresse">
-                                        <label for="adresse">Adresse</label>
-                                    </div>
+    <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
+        <div class="wrapper wrapper--w790">
+            <div class="card card-5">
+                <div class="card-heading">
+                    <h2 class="title">Etudiant</h2>
+                </div>
+                <div class="card-body">
+                    <form action="" method="POST" class="formulaire">
+                        <div class="form-row m-b-55">
+                            <!--choix nouveau - ancien-->
+                                <div class="form-row p-t-20">
+                                        <label class="label label--block">Selectionnez votre statut</label>
+                                        <div class="p-t-15">
+                                            <label class="radio-container m-r-55">Nouveau
+                                                <input type="radio" name="etat" id="nouveau" checked="checked"  value="nouveau" >
+                                                <span class="checkmark"></span>
+                                            </label>
+                                            <label class="radio-container">Ancien
+                                                <input type="radio" name="etat" id="ancien" value="value2" >
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
                                 </div>
-                                <div class="center">
-                                    <button required="" aria-required="true" class="center btn waves-effect waves-light teal darken-4" type="submit" name="action">
-                                        Inscrire
-                                        <a href="insertapp"><em class="material-icons right">send</em></a>
-                                    </button>
-                                </div>
-                            
-                        <!--form etutiant-->
-                        <br><br>
-                        <hr>
-                        <!-- form inscription-->
-                        <div class="card col s12 teal accent-4">
-                            <div class="card-content white-text">
-                                <span class="card-title" >Inscription</span>
-                            </div>
-                        </div>
-                        
-                            <div class="row">
-                                <div class="input-field col s6">
-                                    <select name="filiere" id="filiere">
-                                    <option required="" aria-required="true" value="" disabled selected>Choisir une filiere</option>
-                                    <option value=""> </option>
-                                    </select>
-                                    <label>Filiere</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <select name="classe" id="classe" required="" aria-required="true">
-                                        <option value="inscrit">Inscrit</option>
-                                    </select>
-                                    <label for="Classe">Classe</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input required="" aria-required="true" id="matricule" type="text" class="validate" name="matricule" onkeyup="nospaces(this)">
-                                    <label for="matricule">Matricule</label>
-                                </div> 
-                                <div class="input-field col s6">
-                                    <input placeholder="Astou" required="" aria-required="true" id="first_name" type="text" class="validate" name="first_name" onkeyup="nospaces(this)">
-                                    <label for="first_name">Prénom</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input required="" aria-required="true" id="matricule" type="text" class="validate" name="matricule" onkeyup="nospaces(this)">
-                                    <label for="matricule">Matricule</label>
-                                </div> 
-                                <div class="input-field col s6">
-                                    <input placeholder="Astou" required="" aria-required="true" id="first_name" type="text" class="validate" name="first_name" onkeyup="nospaces(this)">
-                                    <label for="first_name">Prénom</label>
-                                </div>
-                                <div class="row">
-                                        <div class="input-field col s12">
-                                            <input id="telephone" required="" aria-required="true" type="text" class="validate" name="telephone">
-                                            <label for="telephone">Télephone</label>
+                                <!--choix nouveau - ancien-->
+                            <!--matricule-->
+                            <div class="value">
+                                <div class="row row-space">
+                                    <div class="col-2">
+                                            
+                                        <div class="input-group-desc">
+                                                <input class="input--style-5" id="mat" type="text" name="matricule" value="{{gen_mat}}">
+                                                <label class="label--desc">matricule</label>
+                                        </div>
+                                        <div style="margin-top:25px;" >
+                                                <a  class="btn btn-primary" id="boutsearch" style="display: none;background:#328f8e; border: #328f8e; width: 35px;height: 35px;">
+                                                   <i class="search icon" style="padding-top:3px;margin: 0 auto;color: white"> </i>
+                                                </a>
                                         </div>
                                     </div>
-                            
+                                    <div class="col-2">
+                                        <div class="input-group-desc">
+                                                <input type="text" name="prenom" id ="prenom" placeholder="Prénom" class="input--style-5">
+                                                <label class="label--desc">Prénom</label>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </form>
-                        <!--inscription-->
-                    </div>
+                            <!--matricule-->
+                        </div>
+                        <!--Nom / Prénom-->
+                        <div class="form-row m-b-55">
+                            <div class="value">
+                                <div class="row row-space">
+                                    <div class="col-2">
+                                        <div class="input-group-desc">
+                                            <input class="input--style-5" id="nom" type="text" name="nom" class="input--style-5">
+                                            <label class="label--desc">Nom</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="input-group-desc">
+                                            <input class="input--style-5" id="email" type="email" name="email" class="input--style-5">
+                                            <label class="label--desc">Email</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Nom / Prénom-->
+                        <!--Adress / Date Naissance-->
+                        <div class="form-row m-b-55">
+                            <div class="value">
+                                <div class="row row-space">
+                                    <div class="col-2">
+                                        <div class="input-group-desc">
+                                            <input class="input--style-5" id="adresse" type="text" name="adresse" class="input--style-5">
+                                            <label class="label--desc">Adresse</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="input-group-desc">
+                                            <input class="input--style-5" id="date_naiss" type="date" name="date_naiss" class="input--style-5">
+                                            <label class="label--desc">Date Naissance</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Adress / Date Naissance-->
+                        <!------------------------------------------------------------------------------>
+                        <!--Formulaire inscription-->
+                        <div class="card-heading">
+                            <h2 class="title">Inscription</h2>
+                        </div>
+                         <div class="form-row">
+                             <!--Filiere-->
+                                <div class="name">Filiére</div>
+                                <div class="value">
+                                    <div class="input-group">
+                                        <div class="rs-select2 js-select-simple select--no-search">
+                                            <select name="filiere" id="filiere">
+                                                    <option value="">Choisir filière</option>
+                                                    {% for val in filieres %}
+                                                       <option value="{{ val[0] }}">{{ val[1] }}</option>
+                                                    {% endfor %} 
+                                            </select>
+                                            <div class="select-dropdown"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Filiere-->
+                                <br><br><br><br><br><br>
+                                <!--Classe-->
+                                <div class="name">Classe</div>
+                                <div class="value">
+                                    <div class="input-group">
+                                        <div class="rs-select2 js-select-simple select--no-search">
+                                            <select name="classe" id="classe">
+                                                    <option value="">Choisir classe</option>
+                                            </select>
+                                            <div class="select-dropdown"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Classe-->
+                        </div>
+                         <!--Montant inscription-->
+                        <div class="form-row m-b-55">
+                            <div class="value">
+                                <div class="row row-space">
+                                    <div class="col-2">
+                                        <div class="input-group-desc">
+                                            <input class="input--style-5" type="text" name="montant_ins" id="montant_ins" readonly="true">
+                                            <label class="label--desc">Montant inscription</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="input-group-desc">
+                                            <input class="input--style-5" type="text" name="mensualite" id="mensualite" readonly="true">
+                                            <label class="label--desc">Mensualité</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Montant inscription-->
+                        <!--Total inscription  / Date inscription-->
+                        <div class="form-row m-b-55">
+                            <div class="value">
+                                <div class="row row-space">
+                                    <div class="col-2">
+                                        <div class="input-group-desc">
+                                            <input class="input--style-5" type="text" name="total_ins" id="total_ins" readonly="true">
+                                            <label class="label--desc">Total inscription</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="input-group-desc">
+                                            <input class="input--style-5" type="date" name="date_ins" id="date_ins" readonly="true" value="{{date_ins}}">
+                                            <label class="label--desc"> Date d'inscription</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Total inscription / Date inscription-->
+                        <!--Année academique-->
+                        <div class="form-row m-b-55">
+                            <div class="value">
+                                <div class="row row-space">
+                                    <div class="col-6">
+                                        <div class="input-group-desc">
+                                            <input class="input--style-5" type="text" name="annee_accad" id="annee_acad" readonly="true" value="{{annee_accad}}">
+                                            <label class="label--desc">Année academique</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--------------------------->
+                        <!--Formulaire inscription-->
+                        <div class="two fields">
+                            <div>
+                                <button class="btn btn--radius-2 btn--red" type="submit" id="boutonenvoi" name="boutonenvoi" value="ajout_app" >Enregistrer</button>
+                            </div>
+                        </div>
+                        {% with messages = get_flashed_messages() %}
+                        {% for message in messages %} 
+                        <script>
+                           var someJavaScriptVar = '{{ message }}';
+                        </script>
+                  
+                           {% if message%}
+                              {% if message=="WARNING : L'apprenant existe déjà" %}
+                              <script type="text/javascript">
+                                 $('#boutonenvoi').ready(function() {
+                                    $.uiAlert({
+                                       textHead: someJavaScriptVar,
+                                       text: '', // Text
+                                       bgcolor: '#DB2828', // background-color
+                                       textcolor: '#fff', // color
+                                       position: 'top-center',// position . top And bottom ||  left / center / right
+                                       time: 3, // time
+                                    })
+                                 });
+                              </script>
+                              {% else %}
+                                 <script type="text/javascript">
+                                    $('#boutonenvoi').ready(function() {
+                                       $.uiAlert({
+                                          textHead: someJavaScriptVar,
+                                          text: '', // Text
+                                          bgcolor: '#19c3aa', // background-color
+                                          textcolor: '#fff', // color
+                                          position: 'top-center',// position . top And bottom ||  left / center / right
+                                          time: 3, // time
+                                       })
+                                    });
+                                 </script>
+                              {%endif%}
+                           {%endif%}
+                        {% endfor %}      
+                        {% endwith %}
+                    </form>
+                    <div id="response"></div>
                 </div>
             </div>
-            
-                
-    </main>
-{% include "footer.html" %}
-{% include "scriptJS.html" %}
+        </div>
+    </div>
 
-{% endblock %}
+    <!-- Jquery JS-->
+    <script src="../static/js/jquery-3.4.1.min.js"></script>
+    <script src="../static/jquery-ui/jquery-ui.js"></script>
+    <script src="../static/js/myjsfile.js"></script>
+    <!-- Vendor JS-->
+    <script src="../static/vendor/select2/select2.min.js"></script>
+    <script src="../static/vendor/datepicker/moment.min.js"></script>
+    <script src="../static/vendor/datepicker/daterangepicker.js"></script>
+
+    <!-- Main JS-->
+    <script src="../static/js/global.js"></script>
+
 </body>
 
 </html>
+<!-- end document-->
