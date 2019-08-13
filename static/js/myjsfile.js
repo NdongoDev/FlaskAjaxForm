@@ -1,4 +1,3 @@
-//
 $( document ).ready(function() {
     $('#filiere').change(function(){ 
        var x = document.getElementById("filiere").value;
@@ -40,8 +39,8 @@ $( document ).ready(function() {
        $('#montant_ins').val("");
        $('#mensualite').val("");
        $('#total_ins').val("");
- /*document.getElementById("response").innerHTML = "You selected: " + x;
- */    $.ajax({ 
+
+       $.ajax({ 
           type: "GET",
           url: "/classe&"+x,
        });
@@ -66,12 +65,9 @@ $( document ).ready(function() {
     });
  });
  /*********************************************ACTION BOUTON RADIO****************************/
- /*  */
  $(function() {
     var matricule = document.getElementById("mat").value;
     $('#ancien').on('click',function(){
-       document.getElementById('boutonenvoi').disabled = true;
- 
        $('#fil').children('option:not(:first)').remove();
        $('#mat').attr('readonly', false); 
        $('#mat').val(""); 
@@ -79,11 +75,9 @@ $( document ).ready(function() {
        lire(); 
     }); 
     $('#nouveau').on('click',function(){
-       document.getElementById('boutonenvoi').disabled = false;
  
        $('#mat').attr('readonly', true);
        $('#mat').val(matricule);
-      /* window.location.reload();*/ 
        vider();
        ecrire();
  
@@ -91,8 +85,7 @@ $( document ).ready(function() {
           
           $('#filiere').children('option:not(:first)').remove();
           $('#classe').children('option:not(:first)').remove();
-    
-          /*document.getElementById("response").innerHTML = "You selected: " + x;*/
+
           $.ajax({ 
              type: "GET",
              url: "/listfiliere",
@@ -116,71 +109,7 @@ $( document ).ready(function() {
            
     });        
  });
- 
- /*******************************************SEARCH APPRENANT******************** */
- /*
- function ecouteInput(event) {
-    var x = window.event.which || window.event.keyCode;
- 
-    if(x==13){
-       var searchmat = document.getElementById("matricule").value;
-       $.ajax({ 
-          type: "GET",
-          url: "/search&"+searchmat,
-       });
-       $.ajax({ 
-          type: "GET",
-          contentType: 'application/json; charset=utf-8',
-          url: "/search&"+searchmat,
- 
-          success: function(apprenant_find){   
-             $.each(apprenant_find, function(index,d){
-                if(d.prenom){
-                   //document.getElementById("response").innerHTML = "You selected is pliein";
- 
-                   $('#prenom').val(d.prenom);
-                   $('#nom').val(d.nom);
-                   $('#date_naiss').val(convert(d.date_naiss));
-                   $('#adresse').val(d.adresse);
-                   $('#email').val(d.email);
-                   $("#filiere").append("<option value="+ d.id_fil +">" + d.nom_fil + "</option>");
 
-                   $('#mat').attr('readonly', true);
-                   lire();
-                   document.getElementById('boutonenvoi').disabled = false;
- 
-                   document.getElementById('boutsearch').style.display = 'block';
- 
-                }
-                else{
-                   document.getElementById('boutonenvoi').disabled = true;
- 
-                   $.uiAlert({
-                      textHead: d.vide,
-                      text: '', // Text
-                      bgcolor: '#DB2828', // background-color
-                      textcolor: '#fff', // color
-                      position: 'top-center',// position . top And bottom ||  left / center / right
-                      time: 5, // time
-                   })                  
-                }
-             });
-          },
-       });
-    }
- }
- 
- $('#boutsearch').on('click',function(){
-    document.getElementById('boutsearch').style.display = 'none';
-    $('#mat').attr('readonly', false);
-    $('#mat').val("");
-    $('#filiere').children('option:not(:first)').remove();
-    $('#classe').children('option:not(:first)').remove();
- 
-    vider();
- 
- });*/
- 
  /*************************************************CONTROLE CHAMP*****************************/
  
  
@@ -218,14 +147,13 @@ function convert(str) {
     $('#email').attr('readonly', true);
  }
  function ecrire(){
+
     $('#prenom').attr('readonly', false);
     $('#nom').attr('readonly', false);
     $('#date_naiss').attr('readonly', false);
     $('#adresse').attr('readonly', false);
     $('#email').attr('readonly', false);
- 
-    //document.getElementById('boutsearch').style.display = 'none';
- 
+
  }
  function vider(){
        $('#prenom').val("");
@@ -240,7 +168,7 @@ function convert(str) {
        $('#total_ins').val(""); 
  }
 
-
+//recherche matricule
  $("#mat").change(function() {
     var etudiant = document.getElementById("mat").value
  

@@ -57,18 +57,18 @@
                                     <div class="col-2">
                                             
                                         <div class="input-group-desc">
-                                                <input class="input--style-5" id="mat" type="text" name="matricule" value="{{gen_mat}}">
+                                                <input class="input--style-5" id="mat" type="text" name="matricule" readonly="true" value="{{gen_mat}}">
                                                 <label class="label--desc">matricule</label>
                                         </div>
                                         <div style="margin-top:25px;" >
                                                 <a  class="btn btn-primary" id="boutsearch" style="display: none;background:#328f8e; border: #328f8e; width: 35px;height: 35px;">
-                                                   <i class="search icon" style="padding-top:3px;margin: 0 auto;color: white"> </i>
+                                                   <em class="search icon" style="padding-top:3px;margin: 0 auto;color: white"> </em>
                                                 </a>
                                         </div>
                                     </div>
                                     <div class="col-2">
                                         <div class="input-group-desc">
-                                                <input type="text" name="prenom" id ="prenom" placeholder="Prénom" class="input--style-5">
+                                                <input type="text" name="prenom" id ="prenom" placeholder="Prénom" required class="input--style-5">
                                                 <label class="label--desc">Prénom</label>
                                         </div>
                                     </div>
@@ -82,13 +82,13 @@
                                 <div class="row row-space">
                                     <div class="col-2">
                                         <div class="input-group-desc">
-                                            <input class="input--style-5" id="nom" type="text" name="nom" class="input--style-5">
+                                            <input class="input--style-5" id="nom" type="text" name="nom" required class="input--style-5">
                                             <label class="label--desc">Nom</label>
                                         </div>
                                     </div>
                                     <div class="col-2">
                                         <div class="input-group-desc">
-                                            <input class="input--style-5" id="email" type="email" name="email" class="input--style-5">
+                                            <input class="input--style-5" id="email" type="email" name="email" required class="input--style-5">
                                             <label class="label--desc">Email</label>
                                         </div>
                                     </div>
@@ -102,13 +102,13 @@
                                 <div class="row row-space">
                                     <div class="col-2">
                                         <div class="input-group-desc">
-                                            <input class="input--style-5" id="adresse" type="text" name="adresse" class="input--style-5">
+                                            <input class="input--style-5" id="adresse" type="text" name="adresse" required class="input--style-5">
                                             <label class="label--desc">Adresse</label>
                                         </div>
                                     </div>
                                     <div class="col-2">
                                         <div class="input-group-desc">
-                                            <input class="input--style-5" id="date_naiss" type="date" name="date_naiss" class="input--style-5">
+                                            <input class="input--style-5" id="date_naiss" type="date" name="date_naiss" required class="input--style-5">
                                             <label class="label--desc">Date Naissance</label>
                                         </div>
                                     </div>
@@ -127,7 +127,7 @@
                                 <div class="value">
                                     <div class="input-group">
                                         <div class="rs-select2 js-select-simple select--no-search">
-                                            <select name="filiere" id="filiere">
+                                            <select name="filiere" id="filiere" required>
                                                     <option value="">Choisir filière</option>
                                                     {% for val in filieres %}
                                                        <option value="{{ val[0] }}">{{ val[1] }}</option>
@@ -144,7 +144,7 @@
                                 <div class="value">
                                     <div class="input-group">
                                         <div class="rs-select2 js-select-simple select--no-search">
-                                            <select name="classe" id="classe">
+                                            <select name="classe" id="classe" required>
                                                     <option value="">Choisir classe</option>
                                             </select>
                                             <div class="select-dropdown"></div>
@@ -159,7 +159,7 @@
                                 <div class="row row-space">
                                     <div class="col-2">
                                         <div class="input-group-desc">
-                                            <input class="input--style-5" type="text" name="montant_ins" id="montant_ins" readonly="true">
+                                            <input class="input--style-5" type="text" name="montant_ins" id="montant_ins" readonly="true" required>
                                             <label class="label--desc">Montant inscription</label>
                                         </div>
                                     </div>
@@ -213,43 +213,6 @@
                                 <button class="btn btn--radius-2 btn--red" type="submit" id="boutonenvoi" name="boutonenvoi" value="ajout_app" >Enregistrer</button>
                             </div>
                         </div>
-                        {% with messages = get_flashed_messages() %}
-                        {% for message in messages %} 
-                        <script>
-                           var someJavaScriptVar = '{{ message }}';
-                        </script>
-                  
-                           {% if message%}
-                              {% if message=="WARNING : L'apprenant existe déjà" %}
-                              <script type="text/javascript">
-                                 $('#boutonenvoi').ready(function() {
-                                    $.uiAlert({
-                                       textHead: someJavaScriptVar,
-                                       text: '', // Text
-                                       bgcolor: '#DB2828', // background-color
-                                       textcolor: '#fff', // color
-                                       position: 'top-center',// position . top And bottom ||  left / center / right
-                                       time: 3, // time
-                                    })
-                                 });
-                              </script>
-                              {% else %}
-                                 <script type="text/javascript">
-                                    $('#boutonenvoi').ready(function() {
-                                       $.uiAlert({
-                                          textHead: someJavaScriptVar,
-                                          text: '', // Text
-                                          bgcolor: '#19c3aa', // background-color
-                                          textcolor: '#fff', // color
-                                          position: 'top-center',// position . top And bottom ||  left / center / right
-                                          time: 3, // time
-                                       })
-                                    });
-                                 </script>
-                              {%endif%}
-                           {%endif%}
-                        {% endfor %}      
-                        {% endwith %}
                     </form>
                     <div id="response"></div>
                 </div>
